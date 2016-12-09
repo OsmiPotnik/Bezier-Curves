@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Bezierove krivulje</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="bezier.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <canvas id="myCanvas" width="1000" height="600" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.</canvas>
+
+  <button type="button" onclick="fullClear()">Pocisti platno</button> <br />
+  <p>Barva krivulje: &nbsp <input type="color" id="colorpicker" name="curvecolor"><p>
+  <button type="button" onclick="removeCurve()">Zbrisi izbrano krivuljo</button> <br />
+  <div>
+      <h3>Navodila za uporabo</h3>
+      <ul>
+        <li>Levi klik - dodamo novo vozlišče, po dodanih štirih vozliščih se izriše krivulja</li>
+        <li>Levi klik na vozlišče krivulje - izberemo krivuljo, urejamo barvo, premikamo vozlišča</li>
+        <li>D - začnemo novo krivuljo / prekličemo izbiro krivulje</li>
+      </ul>
+  </div>
+
+
+<script>
+  var canvas = document.getElementById("myCanvas");
+  var ctx = canvas.getContext("2d");
+  canvas.addEventListener("click", mouseClick, false);
+  canvas.addEventListener("mousedown", mouseDown, false);
+  canvas.addEventListener("mouseup", mouseUp, false);
+  canvas.addEventListener("mousemove", mouseMove, false);
+  document.getElementById("colorpicker").addEventListener("input", changeColor, false);
+  window.addEventListener("keydown", function(e){if (e.keyCode === 68){disselect();}},false);
+</script>
+</body>
+</html>
